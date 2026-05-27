@@ -5,24 +5,30 @@
 
 
 
-Task(int id, std::string title)
-
-int getId() const {
-    return this.id;
+Task::Task(int id, std::string title)
+    : id(id), title(title), completed(false) {
 }
 
-std::string getTitle() const {
-    return this.title;
+
+int Task::getId() const {
+    return this->id;
 }
 
-bool isCompleted() const {
-    return this.completed;
+std::string Task::getTitle() const {
+    return this->title;
 }
 
-void markCompleted() {
-    this.completed = true;
+bool Task::isCompleted() const {
+    return this->completed;
 }
 
-void printTask() const {
-    std::cout << "Task no: " << this.id << "name: " << this.name << "is: " << this.complete << std::endl;
+void Task::markCompleted() {
+    this->completed = true;
+}
+
+void Task::printTask() const {
+    std::cout << "Task no: " << this->id
+              << " | name: " << this->title
+              << " | completed: " << (this->completed ? "yes" : "no")
+              << std::endl;
 }
