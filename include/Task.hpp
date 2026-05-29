@@ -3,24 +3,23 @@
 
 #include <string>
 
-
 class Task {
-    private: 
-        int id;
-        std::string title;
-        bool completed = false;
+protected:
+    int id;
+    std::string title;
+    bool completed;
 
-    public:
-        Task(int id, std::string title);
+public:
+    Task(int id, std::string title);
+    virtual ~Task() = default;
 
-        int getId() const;
-        std::string getTitle() const;
-        bool isCompleted() const;
+    int getId() const;
+    std::string getTitle() const;
+    bool isCompleted() const;
 
-        void markCompleted();
-        void printTask() const;
+    void markCompleted();
+
+    virtual void printTask() const = 0;
 };
-
-
 
 #endif

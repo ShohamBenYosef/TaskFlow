@@ -1,10 +1,5 @@
 #include "Task.hpp"
 
-#include <iostream>
-#include <string>
-
-
-
 Task::Task(int id, std::string title)
     : id(id), title(title), completed(false) {
 }
@@ -24,11 +19,4 @@ bool Task::isCompleted() const {
 
 void Task::markCompleted() {
     this->completed = true;
-}
-
-void Task::printTask() const {
-    std::cout << "Task no: " << this->id
-              << " | name: " << this->title
-              << " | completed: " << (this->completed ? "yes" : "no")
-              << std::endl;
 }

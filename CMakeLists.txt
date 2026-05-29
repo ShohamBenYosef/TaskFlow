@@ -10,5 +10,7 @@ include_directories(include)
 add_executable(TaskFlow
     src/main.cpp
     src/Task.cpp
+    src/BasicTask.cpp
+    src/DeadlineTask.cpp
     src/TaskManager.cpp
 )
