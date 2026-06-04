@@ -9,6 +9,7 @@ public:
     BasicTask(int id, std::string title);
 
     void printTask() const override;
+    std::string serialize() const override;
 };
 
 #endif

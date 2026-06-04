@@ -20,6 +20,7 @@ public:
     void markCompleted();
 
     virtual void printTask() const = 0;
+    virtual std::string serialize() const = 0;
 };
 
 #endif

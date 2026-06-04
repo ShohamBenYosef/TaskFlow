@@ -12,6 +12,7 @@ public:
     DeadLineTask(int id, std::string title, std::string deadline);
 
     void printTask() const override;
+    std::string serialize() const override;
 };
 
 #endif

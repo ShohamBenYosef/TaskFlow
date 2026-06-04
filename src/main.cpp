@@ -15,12 +15,21 @@ int readInt(const std::string& prompt) {
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             return val;
         }
+
         std::cout << "Invalid input. Please enter a number.\n";
 
         std::cin.clear();
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     }
-    
+}
+
+std::string readLine(const std::string& prompt) {
+    std::string val;
+
+    std::cout << prompt;
+    std::getline(std::cin, val);
+
+    return val;
 }
 
 
@@ -35,6 +44,8 @@ int main() {
         std::cout << "2. Add deadline task\n";
         std::cout << "3. Mark completed\n";
         std::cout << "4. Print all\n";
+        std::cout << "5. Add recurring task\n";
+        std::cout << "6. Save tasks\n";
         std::cout << "0. Exit\n";
 
         choice = readInt("Choice: ");
@@ -46,28 +57,16 @@ int main() {
             }
 
             case 1: {
-                std::string title;
-
-                std::cout << "Add basic task - enter title:\n";
-                
-                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-                std::getline(std::cin, title);
-
+                std::string title = readLine("Add basic task - enter title:\n");
+    
                 manager.addTask(title);
                 std::cout << "Task Added.\n";
                 break;
             }
 
             case 2: {
-                std::string title, deadline;
-
-                std::cout << "Add deadline task - title and deadline\nEnter title:\n";
-
-                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-                std::getline(std::cin, title);
-
-                std::cout << "Enter deadline:\n";
-                std::getline(std::cin, deadline);
+                std::string title = readLine("Add deadline task - title and deadline\nEnter title:\n");
+                std::string deadline = readLine("Enter deadline:\n");
                 
                 manager.addDeadlineTask(title, deadline);
                 std::cout << "Task Added.\n";
@@ -88,6 +87,21 @@ int main() {
 
             case 4: {
                 manager.printAllTasks();
+                break;
+            }
+            
+            case 5: {
+                std::string title = readLine("Add recurring task\nEnter title:\n");
+                std::string frequency = readLine("Enter frequency (Daily/Weekly/Monthly):\n");
+
+                manager.addRecurringTask(title, frequency);
+                std::cout << "Task Added.\n";
+                break;
+            }
+
+            case 6: {
+                manager.saveToFile("tasks.txt");
+                std::cout << "Tasks saved\n";
                 break;
             }
 

@@ -4,7 +4,8 @@
 
 
 #include <memory>
-
+#include <fstream>
+#include <iostream>
 
 TaskManager::TaskManager() 
     : nextId(1) {
@@ -20,6 +21,10 @@ void TaskManager::addDeadlineTask(const std::string& title, const std::string& d
     this->nextId++;
 }
 
+void TaskManager::addRecurringTask(const std::string& title, const std::string& frequency) {
+    this->tasks.push_back(std::make_unique<RecurringTask>(this->nextId, title, frequency));
+    this->nextId++;
+}
 void TaskManager::printAllTasks() const {
     for (const auto& t : this->tasks)
         t->printTask();
@@ -33,4 +38,18 @@ bool TaskManager::markTaskCompleted(int id) {
         }
     }
     return false;
+}
+
+
+void TaskManager::saveToFile(const std::string& filename) const {
+    std::ofstream file(filename);
+
+    if (!file) {
+        std::cout << "Failed to open file for writing.\n";
+        return;
+    }
+
+    for (const auto& task : this->tasks) {
+        file << task->serialize() << '\n';
+    }
 }

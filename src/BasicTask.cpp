@@ -14,3 +14,8 @@ void BasicTask::printTask() const {
               << std::endl;
 }
 
+std::string BasicTask::serialize() const {
+    return "BASIC|" + std::to_string(this->id) + "|"
+     + this->title + "|" + (this->completed ? "1" : "0");
+}
+
