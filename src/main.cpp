@@ -3,7 +3,7 @@
 #include <iostream>
 #include <string>
 #include <limits>
-
+#include <exception>
 
 int readInt(const std::string& prompt) {
     int val;
@@ -46,6 +46,7 @@ int main() {
         std::cout << "4. Print all\n";
         std::cout << "5. Add recurring task\n";
         std::cout << "6. Save tasks\n";
+        std::cout << "7. Load tasks\n";
         std::cout << "0. Exit\n";
 
         choice = readInt("Choice: ");
@@ -102,6 +103,18 @@ int main() {
             case 6: {
                 manager.saveToFile("tasks.txt");
                 std::cout << "Tasks saved\n";
+                break;
+            }
+            
+            case 7: {
+                try {
+                    manager.loadFromFile("tasks.txt");
+                    std::cout << "Tasks loaded\n";
+                } 
+                
+                catch (const std::exception& e) {
+                    std::cout << "Error loading tasks: " << e.what() << '\n';
+                }
                 break;
             }
 

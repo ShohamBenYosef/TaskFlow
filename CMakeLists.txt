@@ -14,4 +14,5 @@ add_executable(TaskFlow
     src/DeadlineTask.cpp
     src/TaskManager.cpp
     src/RecurringTask.cpp
+    src/TaskFactory.cpp
 )
